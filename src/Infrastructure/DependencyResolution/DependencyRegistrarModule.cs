@@ -48,7 +48,6 @@ namespace Infrastructure.DependencyResolution
 	        var container = new Container(new StructureMapRegistry());
 	        Container = container;
             DependencyResolver.SetResolver(new StructureMapDependencyResolver(container));
-	        VisitorRepositoryFactory.Build = container.GetInstance<IVisitorRepository>;
 	    }
 
 	}
