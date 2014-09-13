@@ -1,6 +1,7 @@
 using System;
 using System.Web;
 using Core;
+using Core.Model;
 
 namespace UI
 {

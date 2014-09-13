@@ -1,4 +1,4 @@
-﻿@model Core.Visitor[]
+﻿@model Core.Model.Visitor[]
            
 <div style="text-align:left">
 <h3>Recent Visitors</h3>
@@ -7,6 +7,7 @@
         @visitor.IpAddress @:-
         @visitor.LoginName @:-
         @visitor.PathAndQuerystring <br />
-        @visitor.Browser <hr />
+        @visitor.Browser <br />
+        @visitor <hr/>
     }
 </div>

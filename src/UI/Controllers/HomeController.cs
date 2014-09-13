@@ -1,21 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Core;
-using Core.DataAccess;
+using Core.Model;
 
 namespace UI.Controllers
 {
     [VisitorRetrievalFilter(Order = 1)]
     public class HomeController : Controller
     {
+        private readonly IVisitorRepository _repository;
+
+        public HomeController(IVisitorRepository repository)
+        {
+            _repository = repository;
+        }
+
         [HttpGet]
         public ActionResult Index()
         {
             ViewBag.Message = "Please verify your info.";
-            var visitor = new VisitorBuilder().BuildVisitor();
+            Visitor visitor = new VisitorBuilder().BuildVisitor();
             return View(visitor);
         }
 
@@ -27,7 +30,7 @@ namespace UI.Controllers
                 return View(visitor);
             }
 
-            new VisitorRepository().Save(visitor);
+            _repository.Save(visitor);
             TempData.Add("message", "Your visit has been logged.");
             return RedirectToAction("index");
         }

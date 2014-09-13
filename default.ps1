@@ -21,15 +21,11 @@ properties {
 	
     $databaseName = $projectName
 	$databaseServer = "localhost\sqlexpress2012"
-	$databaseScripts = "$source_dir\Core\Database"
+	$databaseScripts = "$source_dir\Infrastructure\Database"
 	$hibernateConfig = "$source_dir\hibernate.cfg.xml"
 	$schemaDatabaseName = $databaseName + "_schema"
 	
 	$connection_string = "server=$databaseserver;database=$databasename;Integrated Security=true;"
-	
-	$cassini_app = 'C:\Program Files (x86)\Common Files\Microsoft Shared\DevServer\10.0\WebDev.WebServer40.EXE'
-	$port = 1234
-	$webapp_dir = "$source_dir\UI" 
 }
 
 task default -depends Init, CommonAssemblyInfo, Compile, RebuildDatabase, Test, LoadData
@@ -98,13 +94,6 @@ task Package -depends Compile {
     copy_files "$databaseScripts" "$package_dir\database"
 	
 	zip_directory $package_dir $package_file 
-}
-
-task FullSystemTests -depends Compile, RebuildDatabase {
-    copy_all_assemblies_for_test $test_dir
-    &$cassini_app "/port:$port" "/path:$webapp_dir"
-    & $nunitPath\nunit-console-x86.exe $test_dir\$fullSystemTestAssembly /framework=net-4.0 /nologo /nodots /xml=$build_dir\FullSystemTestResult.xml
-    exec { taskkill  /F /IM WebDev.WebServer40.EXE }
 }
  
 function global:zip_directory($directory,$file) {
