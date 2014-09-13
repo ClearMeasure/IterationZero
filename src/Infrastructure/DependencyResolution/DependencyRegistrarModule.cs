@@ -11,6 +11,7 @@ namespace Infrastructure.DependencyResolution
 	{
 		private static bool _dependenciesRegistered;
 		private static readonly object Lock = new object();
+	    internal static IContainer Container = null;
 
 		public void Init(HttpApplication context)
 		{
@@ -24,7 +25,7 @@ namespace Infrastructure.DependencyResolution
 			EnsureDependenciesRegistered();
 		}
 
-		public static void EnsureDependenciesRegistered()
+		public static IContainer EnsureDependenciesRegistered()
 		{
 			if (!_dependenciesRegistered)
 			{
@@ -38,13 +39,16 @@ namespace Infrastructure.DependencyResolution
 					}
 				}
 			}
+
+		    return Container;
 		}
 
 	    private static void Initialize()
 	    {
-            ObjectFactory.Initialize(x => x.AddRegistry<StructureMapRegistry>());
-            DependencyResolver.SetResolver(new StructureMapDependencyResolver());
-	        VisitorRepositoryFactory.Build = () => ObjectFactory.GetInstance<IVisitorRepository>();
+	        var container = new Container(new StructureMapRegistry());
+	        Container = container;
+            DependencyResolver.SetResolver(new StructureMapDependencyResolver(container));
+	        VisitorRepositoryFactory.Build = container.GetInstance<IVisitorRepository>;
 	    }
 
 	}

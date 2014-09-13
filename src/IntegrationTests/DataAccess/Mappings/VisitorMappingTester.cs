@@ -15,7 +15,6 @@ namespace IntegrationTests.DataAccess.Mappings
         [Test]
         public void Should_map_Visitor()
         {
-            DataContext.EnsureStartup();
             new DatabaseTester().Clean();
             var visitor = new Visitor
             {

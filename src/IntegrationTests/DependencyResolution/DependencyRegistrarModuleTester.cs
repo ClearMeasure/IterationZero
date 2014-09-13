@@ -13,8 +13,8 @@ namespace IntegrationTests.DependencyResolution
         [Test]
         public void Should_resolve_interfaces()
         {
-            DependencyRegistrarModule.EnsureDependenciesRegistered();
-            var repository = ObjectFactory.GetInstance<IVisitorRepository>();
+            var container = DependencyRegistrarModule.EnsureDependenciesRegistered();
+            var repository = container.GetInstance<IVisitorRepository>();
 
             repository.ShouldNotBeNull();
             repository.ShouldBeType<VisitorRepository>();

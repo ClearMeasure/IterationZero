@@ -15,6 +15,7 @@ namespace Infrastructure.DataAccess
 
         public static ISession GetSession()
         {
+            EnsureStartup();
             ISession session = _sessionFactory.OpenSession();
             session.BeginTransaction();
             return session;

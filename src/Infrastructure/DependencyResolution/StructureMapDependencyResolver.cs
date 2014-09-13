@@ -10,9 +10,9 @@ namespace Infrastructure.DependencyResolution
     {
         private readonly IContainer _container;
 
-        public StructureMapDependencyResolver()
+        public StructureMapDependencyResolver(Container container)
         {
-            _container = ObjectFactory.Container;
+            _container = container;
         }
 
         public object GetService(Type serviceType)

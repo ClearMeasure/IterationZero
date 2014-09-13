@@ -21,7 +21,7 @@ properties {
 	
     $databaseName = $projectName
 	$databaseServer = "localhost\sqlexpress2012"
-	$databaseScripts = "$source_dir\Core\Database"
+	$databaseScripts = "$source_dir\Infrastructure\Database"
 	$hibernateConfig = "$source_dir\hibernate.cfg.xml"
 	$schemaDatabaseName = $databaseName + "_schema"
 	
