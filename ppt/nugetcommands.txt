@@ -1,0 +1,34 @@
+Install-Package FluentNHibernate Core
+
+Install-Package NUnit UnitTests
+
+Install-Package NUnit IntegrationTests
+Install-Package FluentNHibernate IntegrationTests
+
+Install-Package NUnit FullSystemTests
+Install-Package WatiN FullSystemTests
+Install-Package FluentNHibernate FullSystemTests
+
+Install-Package Mvc3Futures UI
+Install-Package elmah UI
+Install-Package log4net UI
+
+
+
+
+
+
+Uninstall-Package FluentNHibernate Core
+
+Uninstall-Package NUnit UnitTests
+
+Uninstall-Package NUnit IntegrationTests
+Uninstall-Package FluentNHibernate IntegrationTests
+
+Uninstall-Package NUnit FullSystemTests
+Uninstall-Package WatiN FullSystemTests
+Uninstall-Package FluentNHibernate FullSystemTests
+
+Uninstall-Package Mvc3Futures UI
+Uninstall-Package elmah UI
+Uninstall-Package log4net UI
