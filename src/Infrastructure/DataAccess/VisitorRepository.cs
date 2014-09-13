@@ -1,10 +1,12 @@
 using System.Linq;
+using Core;
+using Core.Model;
 using NHibernate;
 using NHibernate.Linq;
 
-namespace Core.DataAccess
+namespace Infrastructure.DataAccess
 {
-    public class VisitorRepository
+    public class VisitorRepository : IVisitorRepository
     {
         public void Save(Visitor visitor)
         {
