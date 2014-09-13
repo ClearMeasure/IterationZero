@@ -15,6 +15,7 @@ namespace Infrastructure
             Map(x => x.Browser).Length(4000).Not.Nullable();
             Map(x => x.VisitDate).Not.Nullable();
             Map(x => x.IpAddress).Not.Nullable();
+            Map(x => x.FirstName);
         }
     }
 }

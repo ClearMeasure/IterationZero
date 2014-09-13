@@ -97,10 +97,9 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="DataContext.cs" />
+    <Compile Include="IVisitorRepository.cs" />
     <Compile Include="Visitor.cs" />
-    <Compile Include="DataAccess\Mappings\VisitorMap.cs" />
-    <Compile Include="DataAccess\VisitorRepository.cs" />
+    <Compile Include="VisitorRepositoryFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

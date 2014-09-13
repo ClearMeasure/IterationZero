@@ -1,5 +1,6 @@
 ﻿using System;
 using Core;
+using Infrastructure;
 using IntegrationTests.DataAccess;
 using NUnit.Framework;
 

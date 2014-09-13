@@ -2,34 +2,26 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Core;
-using Core.DataAccess;
+using Infrastructure;
 using NHibernate;
-using Should;
 using NUnit.Framework;
+using Should;
 
 namespace IntegrationTests.DataAccess
 {
     [TestFixture]
     public class VisitorRepositoryTester
     {
-        [Test]
-        public void When_saving_should_write_to_database()
+        private Visitor CreateVisitor(DateTime visitDate)
         {
-            new DatabaseTester().Clean();
-            var visitor = CreateVisitor(Convert.ToDateTime("1/2/2345"));
-
-            var repository = new VisitorRepository();
-            repository.Save(visitor);
-
-            Visitor loadedVisitor;
-            using (ISession session = DataContext.GetSession())
+            return new Visitor
             {
-                loadedVisitor = session.Load<Visitor>(
-                    visitor.Id);
-            }
-
-            loadedVisitor.ShouldNotBeNull();
-            loadedVisitor.VisitDate.ToShortDateString().ShouldEqual("1/2/2345");
+                Browser = "1",
+                IpAddress = "2",
+                LoginName = "3",
+                PathAndQuerystring = "4",
+                VisitDate = visitDate
+            };
         }
 
         [Test]
@@ -62,16 +54,24 @@ namespace IntegrationTests.DataAccess
             idList.Contains(visitor1.Id).ShouldBeFalse();
         }
 
-        private Visitor CreateVisitor(DateTime visitDate)
+        [Test]
+        public void When_saving_should_write_to_database()
         {
-            return new Visitor
-                       {
-                           Browser = "1",
-                           IpAddress = "2",
-                           LoginName = "3",
-                           PathAndQuerystring = "4",
-                           VisitDate = visitDate
-                       };
+            new DatabaseTester().Clean();
+            Visitor visitor = CreateVisitor(Convert.ToDateTime("1/2/2345"));
+
+            var repository = new VisitorRepository();
+            repository.Save(visitor);
+
+            Visitor loadedVisitor;
+            using (ISession session = DataContext.GetSession())
+            {
+                loadedVisitor = session.Load<Visitor>(
+                    visitor.Id);
+            }
+
+            loadedVisitor.ShouldNotBeNull();
+            loadedVisitor.VisitDate.ToShortDateString().ShouldEqual("1/2/2345");
         }
     }
 }

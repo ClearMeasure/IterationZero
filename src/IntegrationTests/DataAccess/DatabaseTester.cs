@@ -1,5 +1,6 @@
 using System;
 using Core;
+using Infrastructure;
 using NHibernate.Tool.hbm2ddl;
 using NUnit.Framework;
 

@@ -1,27 +1,27 @@
 using System.Web.Mvc;
 using Core;
-using Core.DataAccess;
+using Microsoft.Ajax.Utilities;
 
 namespace UI
 {
-	public class VisitorRetrievalFilter : ActionFilterAttribute
-	{
-		private readonly VisitorRepository _repository;
+    public class VisitorRetrievalFilter : ActionFilterAttribute
+    {
+        private readonly IVisitorRepository _repository;
 
-		public VisitorRetrievalFilter(VisitorRepository repository)
-		{
-			_repository = repository;
-		}
+        public VisitorRetrievalFilter(IVisitorRepository repository)
+        {
+            _repository = repository;
+        }
 
-		public VisitorRetrievalFilter() : this(
-			new VisitorRepository())
-		{
-		}
+        public VisitorRetrievalFilter() : this(VisitorRepositoryFactory.Build())
+        {
+            
+        }
 
-		public override void OnResultExecuting(ResultExecutingContext filterContext)
-		{
-			Visitor[] visitors = _repository.GetRecentVisitors(10);
-			filterContext.Controller.ViewData["Visitors"] = visitors;
-		}
-	}
+        public override void OnResultExecuting(ResultExecutingContext filterContext)
+        {
+            Visitor[] visitors = _repository.GetRecentVisitors(10);
+            filterContext.Controller.ViewData["Visitors"] = visitors;
+        }
+    }
 }

@@ -1,17 +1,13 @@
-using System;
-using System.IO;
-using Core;
 using FluentNHibernate.Cfg;
-using log4net.Config;
 using NHibernate;
 using NHibernate.Cfg;
 
 namespace Infrastructure
 {
-    public class DataConfig
+    public class DataContext
     {
         private static ISessionFactory _sessionFactory;
-        private static bool _startupComplete = false;
+        private static bool _startupComplete;
 
         private static readonly object _locker =
             new object();
@@ -31,7 +27,7 @@ namespace Infrastructure
                 {
                     if (!_startupComplete)
                     {
-                        DataConfig.PerformStartup();
+                        PerformStartup();
                         _startupComplete = true;
                     }
                 }
@@ -40,7 +36,6 @@ namespace Infrastructure
 
         private static void PerformStartup()
         {
-            InitializeLog4Net();
             InitializeSessionFactory();
             InitializeRepositories();
         }
@@ -59,28 +54,15 @@ namespace Infrastructure
                 Fluently.Configure(
                     new Configuration().Configure())
                     .Mappings(cfg =>
-                              cfg.FluentMappings
-                                  .AddFromAssembly(
-                                      typeof (VisitorMap)
-                                          .Assembly))
+                        cfg.FluentMappings
+                            .AddFromAssembly(
+                                typeof (VisitorMap)
+                                    .Assembly))
                     .BuildConfiguration();
-        }
-
-        private static void InitializeLog4Net()
-        {
-            string configPath = Path.Combine(
-                AppDomain.CurrentDomain.BaseDirectory,
-                "Log4Net.config");
-            var fileInfo = new FileInfo(configPath);
-            XmlConfigurator.ConfigureAndWatch(fileInfo);
         }
 
         private static void InitializeRepositories()
         {
-            Func<IVisitorRepository> builder =
-                () => new VisitorRepository();
-            VisitorRepositoryFactory.RepositoryBuilder =
-                builder;
         }
     }
 }

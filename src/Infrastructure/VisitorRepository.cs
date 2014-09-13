@@ -9,7 +9,7 @@ namespace Infrastructure
     {
         public void Save(Visitor visitor)
         {
-            using (ISession session = DataConfig.GetSession())
+            using (ISession session = DataContext.GetSession())
             {
                 session.BeginTransaction();
                 session.SaveOrUpdate(visitor);
@@ -19,7 +19,7 @@ namespace Infrastructure
 
         public Visitor[] GetRecentVisitors(int numberOfVisitors)
         {
-            using (ISession session = DataConfig.GetSession())
+            using (ISession session = DataContext.GetSession())
             {
                 Visitor[] recentVisitors =
                     session.Query<Visitor>()
