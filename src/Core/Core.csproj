@@ -87,7 +87,6 @@
     </Compile>
     <Compile Include="IVisitorRepository.cs" />
     <Compile Include="Model\Visitor.cs" />
-    <Compile Include="VisitorRepositoryFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
