@@ -1,5 +1,7 @@
+using System.Configuration;
 using System.Web.Mvc;
 using Core;
+using Core.Model;
 using Microsoft.Ajax.Utilities;
 
 namespace UI
@@ -13,7 +15,7 @@ namespace UI
             _repository = repository;
         }
 
-        public VisitorRetrievalFilter() : this(VisitorRepositoryFactory.Build())
+        public VisitorRetrievalFilter() : this(DependencyResolver.Current.GetService<IVisitorRepository>())
         {
             
         }

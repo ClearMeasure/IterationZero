@@ -108,21 +108,22 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="DataContext.cs" />
-    <Compile Include="DependencyRegistrarModule.cs" />
-    <Compile Include="StructureMapDependencyResolver.cs" />
-    <Compile Include="StructureMapRegistry.cs" />
-    <Compile Include="VisitorMap.cs" />
-    <Compile Include="VisitorRepository.cs" />
+    <Compile Include="DataAccess\DataContext.cs" />
+    <Compile Include="DependencyResolution\DependencyRegistrarModule.cs" />
+    <Compile Include="DependencyResolution\StructureMapDependencyResolver.cs" />
+    <Compile Include="DependencyResolution\StructureMapRegistry.cs" />
+    <Compile Include="DataAccess\Mappings\VisitorMap.cs" />
+    <Compile Include="DataAccess\VisitorRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\hibernate.cfg.xml">
       <Link>hibernate.cfg.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Database\Update\0001_VisitorTable.sql" />
+    <Content Include="Database\Update\0002_AddNewColumn.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -144,7 +145,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Database\Create\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{929af128-c08d-4332-b2e9-40af56bd1538}</Project>

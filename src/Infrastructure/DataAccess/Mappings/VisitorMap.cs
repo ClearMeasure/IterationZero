@@ -1,7 +1,7 @@
-using Core;
+using Core.Model;
 using FluentNHibernate.Mapping;
 
-namespace Infrastructure
+namespace Infrastructure.DataAccess.Mappings
 {
     public class VisitorMap : ClassMap<Visitor>
     {

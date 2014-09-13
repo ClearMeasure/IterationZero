@@ -2,10 +2,10 @@ using System;
 using System.Web;
 using System.Web.Mvc;
 using Core;
-using NHibernate.Event;
+using Infrastructure.DataAccess;
 using StructureMap;
 
-namespace Infrastructure
+namespace Infrastructure.DependencyResolution
 {
 	public class DependencyRegistrarModule : IHttpModule
 	{

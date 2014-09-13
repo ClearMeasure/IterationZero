@@ -1,7 +1,8 @@
 using Core;
+using Infrastructure.DataAccess;
 using StructureMap.Configuration.DSL;
 
-namespace Infrastructure
+namespace Infrastructure.DependencyResolution
 {
     public class StructureMapRegistry : Registry
     {

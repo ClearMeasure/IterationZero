@@ -121,7 +121,7 @@
     <Compile Include="DataAccess\DatabaseTester.cs" />
     <Compile Include="DataAccess\Mappings\VisitorMappingTester.cs" />
     <Compile Include="DataAccess\VisitorRepositoryTester.cs" />
-    <Compile Include="DependencyRegistrarModuleTester.cs" />
+    <Compile Include="DependencyResolution\DependencyRegistrarModuleTester.cs" />
     <Compile Include="ZDataLoader.cs" />
   </ItemGroup>
   <ItemGroup>

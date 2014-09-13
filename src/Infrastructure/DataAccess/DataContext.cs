@@ -1,8 +1,9 @@
 using FluentNHibernate.Cfg;
+using Infrastructure.DataAccess.Mappings;
 using NHibernate;
 using NHibernate.Cfg;
 
-namespace Infrastructure
+namespace Infrastructure.DataAccess
 {
     public class DataContext
     {

@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using Core;
+using Core.Model;
 
 namespace UI.Controllers
 {

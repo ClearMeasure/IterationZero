@@ -1,6 +1,8 @@
 ﻿using System;
 using Core;
+using Core.Model;
 using Infrastructure;
+using Infrastructure.DataAccess;
 using NHibernate;
 using NUnit.Framework;
 using Should;

@@ -1,10 +1,11 @@
 ﻿using Core;
-using Infrastructure;
+using Infrastructure.DataAccess;
+using Infrastructure.DependencyResolution;
 using NUnit.Framework;
 using Should;
 using StructureMap;
 
-namespace IntegrationTests
+namespace IntegrationTests.DependencyResolution
 {
     [TestFixture]
     public class DependencyRegistrarModuleTester

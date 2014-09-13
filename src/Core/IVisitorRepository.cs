@@ -1,3 +1,5 @@
+using Core.Model;
+
 namespace Core
 {
     public interface IVisitorRepository

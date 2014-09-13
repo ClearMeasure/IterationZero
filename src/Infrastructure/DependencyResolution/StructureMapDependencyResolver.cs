@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using StructureMap;
 
-namespace Infrastructure
+namespace Infrastructure.DependencyResolution
 {
     public class StructureMapDependencyResolver : IDependencyResolver
     {
