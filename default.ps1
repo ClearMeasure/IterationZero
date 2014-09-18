@@ -21,7 +21,7 @@ properties {
 	
     $databaseName = $projectName
 	$databaseServer = "localhost\sqlexpress2012"
-	$databaseScripts = "$source_dir\Infrastructure\Database"
+	$databaseScripts = "$source_dir\Database\scripts"
 	$hibernateConfig = "$source_dir\hibernate.cfg.xml"
 	$schemaDatabaseName = $databaseName + "_schema"
 	
@@ -60,7 +60,7 @@ task Test {
 
 task RebuildDatabase -depends ConnectionString {
     exec { 
-		& $base_dir\aliasql\aliasql.exe Rebuild $databaseServer $databaseName $databaseScripts 
+		& $databaseScripts\aliasql.exe Rebuild $databaseServer $databaseName $databaseScripts 
 	}
 }
 
@@ -72,7 +72,7 @@ task LoadData -depends ConnectionString, Compile, RebuildDatabase {
 
 task CreateCompareSchema -depends SchemaConnectionString {
     exec { 
-		& $base_dir\aliasql\aliasql.exe Rebuild $databaseServer $schemaDatabaseName $databaseScripts 
+		& $databaseScripts\aliasql.exe Rebuild $databaseServer $schemaDatabaseName $databaseScripts 
 	}
 }
 

@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		OnionArchitecture.dgml = OnionArchitecture.dgml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{79B7CC06-CC66-41EE-AA45-3F5AACE80F33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{E84E9D61-2A0D-44A0-A10D-77B305A7D2D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E84E9D61-2A0D-44A0-A10D-77B305A7D2D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E84E9D61-2A0D-44A0-A10D-77B305A7D2D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79B7CC06-CC66-41EE-AA45-3F5AACE80F33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79B7CC06-CC66-41EE-AA45-3F5AACE80F33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79B7CC06-CC66-41EE-AA45-3F5AACE80F33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79B7CC06-CC66-41EE-AA45-3F5AACE80F33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
