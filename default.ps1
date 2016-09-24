@@ -9,7 +9,7 @@ properties {
     $integrationTestAssembly = "IntegrationTests.dll"
     $fullSystemTestAssembly = "FullSystemTests.dll"
     $projectConfig = "Release"
-    $base_dir = resolve-path .\
+    $base_dir = Resolve-Path .\
     $source_dir = "$base_dir\src"
     $nunitPath = "$source_dir\packages\NUnit.2.5.9.10348\Tools"
 
@@ -25,7 +25,7 @@ properties {
     $hibernateConfig = "$source_dir\hibernate.cfg.xml"
     $schemaDatabaseName = $databaseName + "_schema"
 
-    $connection_string = "server=$databaseserver;database=$databasename;Integrated Security=true;"
+    $connection_string = "server=$databaseServer;database=$databaseName;Integrated Security=true;"
 }
 
 task default -depends Init, CommonAssemblyInfo, Compile, RebuildDatabase, Test, LoadData
@@ -39,8 +39,8 @@ task Init {
 }
 
 task ConnectionString {
-    $connection_string = "server=$databaseserver;database=$databasename;Integrated Security=true;"
-    write-host "Using connection string: $connection_string"
+    $connection_string = "server=$databaseServer;database=$databaseName;Integrated Security=true;"
+    Write-Host "Using connection string: $connection_string"
     poke-xml $hibernateConfig "//e:property[@name = 'connection.connection_string']" $connection_string @{"e" = "urn:nhibernate-configuration-2.2"}
 }
 
@@ -78,9 +78,9 @@ task CreateCompareSchema -depends SchemaConnectionString {
 }
 
 task SchemaConnectionString {
-    $connection_string = "server=$databaseserver;database=$schemaDatabaseName;Integrated Security=true;"
-    write-host "Using connection string: $connection_string"
-    poke-xml $hibernateConfig "//e:property[@name = 'connection.connection_string']" $connection_string @{"e" = "urn:nhibernate-configuration-2.2"}
+    $connection_string = "server=$databaseServer;database=$schemaDatabaseName;Integrated Security=true;"
+    Write-Host "Using connection string: $connection_string"
+    Poke-Xml $hibernateConfig "//e:property[@name = 'connection.connection_string']" $connection_string @{"e" = "urn:nhibernate-configuration-2.2"}
 }
 
 task CommonAssemblyInfo {
@@ -98,7 +98,7 @@ task Package -depends Compile {
 }
  
 function global:zip_directory($directory,$file) {
-    write-host "Zipping folder: " $test_assembly
+    Write-Host "Zipping folder: " $test_assembly
     delete_file $file
     cd $directory
     & "$base_dir\7zip\7za.exe" a -mx=9 -r $file
@@ -132,22 +132,22 @@ function global:copy_all_assemblies_for_test($destination) {
 }
 
 function global:delete_file($file) {
-    if($file) { remove-item $file -force -ErrorAction SilentlyContinue | out-null } 
+    if($file) { remove-item $file -force -ErrorAction SilentlyContinue | Out-Null } 
 }
 
 function global:delete_directory($directory_name)
 {
-    rd $directory_name -recurse -force  -ErrorAction SilentlyContinue | out-null
+    rd $directory_name -recurse -force -ErrorAction SilentlyContinue | Out-Null
 }
 
 function global:delete_files_in_dir($dir)
 {
-    get-childitem $dir -recurse | foreach ($_) {remove-item $_.fullname}
+    Get-ChildItem $dir -recurse | foreach ($_) {remove-item $_.fullname}
 }
 
 function global:create_directory($directory_name)
 {
-    mkdir $directory_name  -ErrorAction SilentlyContinue  | out-null
+    mkdir $directory_name -ErrorAction SilentlyContinue  | Out-Null
 }
 
 function global:create-commonAssemblyInfo($version,$applicationName,$filename)
